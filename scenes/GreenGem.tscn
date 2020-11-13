@@ -1,0 +1,7 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://shaders/GreenGemPaletteSwap2D.tres" type="Material" id=1]
+[ext_resource path="res://scenes/GemBase.tscn" type="PackedScene" id=2]
+
+[node name="GreenGem" instance=ExtResource( 2 )]
+material = ExtResource( 1 )

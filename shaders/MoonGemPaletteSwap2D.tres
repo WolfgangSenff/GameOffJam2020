@@ -1,0 +1,17 @@
+[gd_resource type="ShaderMaterial" load_steps=4 format=2]
+
+[ext_resource path="res://shaders/PaletteSwap2D.shader" type="Shader" id=1]
+
+[sub_resource type="Gradient" id=1]
+offsets = PoolRealArray( 0, 0.188557, 0.395319, 0.708713, 1 )
+colors = PoolColorArray( 0, 0, 0, 1, 0.359362, 0.359362, 0.359362, 1, 0.765612, 0.765612, 0.765612, 1, 0.945232, 1, 0, 1, 1, 1, 1, 1 )
+
+[sub_resource type="GradientTexture" id=2]
+gradient = SubResource( 1 )
+width = 120
+
+[resource]
+shader = ExtResource( 1 )
+shader_param/palette_count = 1.0
+shader_param/palette_index = 0.0
+shader_param/palette = SubResource( 2 )

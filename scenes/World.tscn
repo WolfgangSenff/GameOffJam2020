@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://scenes/Character.tscn" type="PackedScene" id=1]
+[ext_resource path="res://shaders/BlueGemPaletteSwap2D.tres" type="Material" id=2]
+[ext_resource path="res://scenes/World.gd" type="Script" id=5]
+
+[node name="World" type="Node2D"]
+material = ExtResource( 2 )
+script = ExtResource( 5 )
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="CurrentLevel" type="Node2D" parent="."]
+
+[node name="Character" parent="." instance=ExtResource( 1 )]
+position = Vector2( -114.623, 30.5602 )
+Speed = 120.0

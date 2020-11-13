@@ -1,0 +1,76 @@
+[gd_scene load_steps=10 format=2]
+
+[ext_resource path="res://scenes/GhostBase.tscn" type="PackedScene" id=1]
+[ext_resource path="res://assets/images/ghost1.png" type="Texture" id=2]
+[ext_resource path="res://scenes/WhiteSheetGhost.gd" type="Script" id=3]
+[ext_resource path="res://scenes/state_machine/InvincibleTimeoutState.tscn" type="PackedScene" id=4]
+[ext_resource path="res://scenes/state_machine/ArmorDamageState.tscn" type="PackedScene" id=5]
+[ext_resource path="res://scenes/state_machine/WanderingPhysicsState.tscn" type="PackedScene" id=6]
+
+[sub_resource type="CircleShape2D" id=1]
+radius = 12.1908
+
+[sub_resource type="Animation" id=3]
+resource_name = "BeginFlashing"
+length = 0.2
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 0.513726, 0.513726, 1 ) ]
+}
+
+[sub_resource type="Animation" id=2]
+resource_name = "Default"
+length = 5.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ) ]
+}
+
+[node name="WhiteSheetGhost" instance=ExtResource( 1 )]
+collision_mask = 12
+script = ExtResource( 3 )
+HP = 30
+
+[node name="Sprite" parent="." index="0"]
+position = Vector2( 0, -8 )
+texture = ExtResource( 2 )
+
+[node name="CollisionShape2D" parent="." index="1"]
+position = Vector2( 0, -8 )
+shape = SubResource( 1 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="2"]
+autoplay = "Default"
+playback_process_mode = 0
+anims/BeginFlashing = SubResource( 3 )
+anims/Default = SubResource( 2 )
+
+[node name="WanderingPhysicsState" parent="StateMachine/PhysicsStates" index="0" instance=ExtResource( 6 )]
+TimeBetweenNewPositions = 5.0
+
+[node name="InvincibleTimeoutState" parent="StateMachine/DamageStates" index="0" instance=ExtResource( 4 )]
+Timeout = 1.0
+
+[node name="ArmorDamageState" parent="StateMachine/DamageStates" index="1" instance=ExtResource( 5 )]
+NextState = NodePath("../InvincibleTimeoutState")
+ArmorAmount = 10
+
+[connection signal="area_entered" from="." to="." method="_on_WhiteSheetGhost_area_entered"]
