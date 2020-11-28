@@ -24,15 +24,17 @@ func navigate_to(destination):
     is_navigating = true
 
 func navigate(delta):
-    assert(actor)
-    var distance_to_destination = actor.position.distance_to(path[0])
-    next_destination = path[0]
-    var normalized_direction = (next_destination - actor.position)
-    emit_signal("on_moved", normalized_direction)
-    if distance_to_destination > NavigationStopEpsilon:
-        move(delta)
+    if actor and is_instance_valid(actor):
+        var distance_to_destination = actor.position.distance_to(path[0])
+        next_destination = path[0]
+        var normalized_direction = (next_destination - actor.position)
+        emit_signal("on_moved", normalized_direction)
+        if distance_to_destination > NavigationStopEpsilon:
+            move(delta)
+        else:
+            update_path()
     else:
-        update_path()
+        emit_signal("on_destination_reached", self, current_destination)
 
 func move(delta):
     assert(actor)

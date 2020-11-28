@@ -1,21 +1,30 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://assets/images/ship_ground_right.png" type="Texture" id=1]
 [ext_resource path="res://scenes/Navigation.gd" type="Script" id=2]
+[ext_resource path="res://scenes/LevelBase.gd" type="Script" id=3]
+[ext_resource path="res://scenes/LevelExit.tscn" type="PackedScene" id=4]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 138.566, 7.35675 )
+extents = Vector2( 400.188, 7.35675 )
 
 [sub_resource type="RectangleShape2D" id=2]
-extents = Vector2( 149.358, 10 )
+extents = Vector2( 404.688, 10 )
 
-[sub_resource type="NavigationPolygon" id=3]
+[sub_resource type="RectangleShape2D" id=3]
+extents = Vector2( 10, 30 )
+
+[sub_resource type="RectangleShape2D" id=4]
+extents = Vector2( 10, 30 )
+
+[sub_resource type="NavigationPolygon" id=5]
 vertices = PoolVector2Array( 159.622, 17.8237, 152.652, 71.3095, -163.263, 71.4611, -152.051, 18.8844 )
 polygons = [ PoolIntArray( 0, 1, 2, 3 ) ]
 outlines = [ PoolVector2Array( -152.051, 18.8844, -163.263, 71.4611, 152.652, 71.3095, 159.622, 17.8237 ) ]
 
 [node name="LevelBase" type="StaticBody2D"]
 collision_mask = 18
+script = ExtResource( 3 )
 
 [node name="Floor" type="Sprite" parent="."]
 texture = ExtResource( 1 )
@@ -30,6 +39,14 @@ shape = SubResource( 1 )
 position = Vector2( -5.49143, 82.1312 )
 shape = SubResource( 2 )
 
+[node name="Left" type="CollisionShape2D" parent="."]
+position = Vector2( -137.881, 44.2432 )
+shape = SubResource( 3 )
+
+[node name="Right" type="CollisionShape2D" parent="."]
+position = Vector2( 139.245, 44.6978 )
+shape = SubResource( 4 )
+
 [node name="Camera2D" type="Camera2D" parent="."]
 current = true
 
@@ -39,33 +56,21 @@ current = true
 script = ExtResource( 2 )
 
 [node name="NavigationPolygonInstance" type="NavigationPolygonInstance" parent="Navigation2D"]
-navpoly = SubResource( 3 )
+navpoly = SubResource( 5 )
 
 [node name="WanderingPoints" type="Node" parent="Navigation2D"]
 
-[node name="Position2D" type="Position2D" parent="Navigation2D/WanderingPoints"]
-position = Vector2( -141.821, 28.0308 )
-
-[node name="Position2D2" type="Position2D" parent="Navigation2D/WanderingPoints"]
-position = Vector2( -143.639, 40.0007 )
-
-[node name="Position2D3" type="Position2D" parent="Navigation2D/WanderingPoints"]
-position = Vector2( -145.306, 51.0615 )
-
-[node name="Position2D4" type="Position2D" parent="Navigation2D/WanderingPoints"]
-position = Vector2( -146.669, 62.7284 )
-
 [node name="Position2D5" type="Position2D" parent="Navigation2D/WanderingPoints"]
-position = Vector2( -118.638, 27.5762 )
+position = Vector2( -115.305, 27.7277 )
 
 [node name="Position2D6" type="Position2D" parent="Navigation2D/WanderingPoints"]
-position = Vector2( -120.457, 39.5462 )
+position = Vector2( -117.124, 39.6977 )
 
 [node name="Position2D7" type="Position2D" parent="Navigation2D/WanderingPoints"]
-position = Vector2( -122.123, 50.6069 )
+position = Vector2( -118.79, 50.7584 )
 
 [node name="Position2D8" type="Position2D" parent="Navigation2D/WanderingPoints"]
-position = Vector2( -123.487, 62.2738 )
+position = Vector2( -120.154, 62.4253 )
 
 [node name="Position2D9" type="Position2D" parent="Navigation2D/WanderingPoints"]
 position = Vector2( -92.7289, 27.4247 )
@@ -176,25 +181,18 @@ position = Vector2( 98.7897, 48.4857 )
 position = Vector2( 97.4261, 60.1526 )
 
 [node name="Position2D45" type="Position2D" parent="Navigation2D/WanderingPoints"]
-position = Vector2( 128.184, 25.3035 )
+position = Vector2( 120.305, 25.6065 )
 
 [node name="Position2D46" type="Position2D" parent="Navigation2D/WanderingPoints"]
-position = Vector2( 126.366, 37.2734 )
+position = Vector2( 118.487, 37.5764 )
 
 [node name="Position2D47" type="Position2D" parent="Navigation2D/WanderingPoints"]
-position = Vector2( 124.699, 48.3342 )
+position = Vector2( 116.82, 48.6372 )
 
 [node name="Position2D48" type="Position2D" parent="Navigation2D/WanderingPoints"]
-position = Vector2( 123.336, 60.0011 )
+position = Vector2( 115.457, 60.3041 )
 
-[node name="Position2D49" type="Position2D" parent="Navigation2D/WanderingPoints"]
-position = Vector2( 147.881, 26.0611 )
+[node name="StartPosition" type="Position2D" parent="."]
 
-[node name="Position2D50" type="Position2D" parent="Navigation2D/WanderingPoints"]
-position = Vector2( 146.063, 38.031 )
-
-[node name="Position2D51" type="Position2D" parent="Navigation2D/WanderingPoints"]
-position = Vector2( 144.397, 49.0918 )
-
-[node name="Position2D52" type="Position2D" parent="Navigation2D/WanderingPoints"]
-position = Vector2( 143.033, 60.7586 )
+[node name="LevelExit" parent="." instance=ExtResource( 4 )]
+position = Vector2( 126.366, 42.8796 )

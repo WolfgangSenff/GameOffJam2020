@@ -1,0 +1,22 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://scenes/GismoPopup.tscn" type="PackedScene" id=1]
+[ext_resource path="res://scenes/PlayerTrigger.tscn" type="PackedScene" id=2]
+[ext_resource path="res://scenes/GismoTrigger.gd" type="Script" id=3]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 10, 28.0866 )
+
+[node name="GismoTrigger" instance=ExtResource( 2 )]
+collision_layer = 128
+collision_mask = 0
+script = ExtResource( 3 )
+
+[node name="CollisionShape2D" parent="." index="0"]
+shape = SubResource( 1 )
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." index="1"]
+
+[node name="GismoPopup" parent="CanvasLayer" index="0" instance=ExtResource( 1 )]
+visible = false
+popup_exclusive = true

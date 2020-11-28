@@ -199,7 +199,7 @@ script = ExtResource( 2 )
 collision_layer = 4
 collision_mask = 16
 script = ExtResource( 3 )
-Damage = 8.0
+Damage = 120.0
 WeaponType = "Blade"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="EnemyHitArea"]

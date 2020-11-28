@@ -1,17 +1,169 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://scenes/Character.tscn" type="PackedScene" id=1]
-[ext_resource path="res://shaders/BlueGemPaletteSwap2D.tres" type="Material" id=2]
+[ext_resource path="res://assets/images/Abalam.png" type="Texture" id=2]
+[ext_resource path="res://assets/images/earth.png" type="Texture" id=3]
+[ext_resource path="res://assets/images/stars.png" type="Texture" id=4]
 [ext_resource path="res://scenes/World.gd" type="Script" id=5]
+[ext_resource path="res://assets/images/WindowFront.png" type="Texture" id=6]
 
-[node name="World" type="Node2D"]
-material = ExtResource( 2 )
+[node name="World" type="Node2D" groups=[
+"World",
+]]
+position = Vector2( 1, 0 )
 script = ExtResource( 5 )
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+layer = -1
+offset = Vector2( 0, 6 )
+transform = Transform2D( 1, 0, 0, 1, 0, 6 )
+
+[node name="StarLayer" type="ParallaxLayer" parent="ParallaxBackground"]
+light_mask = 2
+motion_scale = Vector2( 0.5, 0.75 )
+
+[node name="stars" type="Sprite" parent="ParallaxBackground/StarLayer"]
+position = Vector2( -340.936, -37.9294 )
+z_index = -2
+texture = ExtResource( 4 )
+hframes = 4
+frame = 1
+
+[node name="stars2" type="Sprite" parent="ParallaxBackground/StarLayer"]
+position = Vector2( -318.591, -56.2761 )
+z_index = -2
+texture = ExtResource( 4 )
+hframes = 4
+
+[node name="stars3" type="Sprite" parent="ParallaxBackground/StarLayer"]
+position = Vector2( -268.184, -63.6167 )
+z_index = -2
+texture = ExtResource( 4 )
+hframes = 4
+frame = 2
+
+[node name="stars4" type="Sprite" parent="ParallaxBackground/StarLayer"]
+position = Vector2( -212.774, -64.8701 )
+z_index = -2
+texture = ExtResource( 4 )
+hframes = 4
+frame = 1
+
+[node name="stars5" type="Sprite" parent="ParallaxBackground/StarLayer"]
+position = Vector2( -118.706, -83.328 )
+z_index = -2
+texture = ExtResource( 4 )
+hframes = 4
+frame = 3
+
+[node name="stars6" type="Sprite" parent="ParallaxBackground/StarLayer"]
+position = Vector2( -44.5069, -83.7364 )
+z_index = -2
+texture = ExtResource( 4 )
+hframes = 4
+frame = 2
+
+[node name="stars17" type="Sprite" parent="ParallaxBackground/StarLayer"]
+position = Vector2( 100.028, -75.0591 )
+z_index = -2
+texture = ExtResource( 4 )
+hframes = 4
+
+[node name="stars7" type="Sprite" parent="ParallaxBackground/StarLayer"]
+position = Vector2( 39.052, -75.5974 )
+z_index = -2
+texture = ExtResource( 4 )
+hframes = 4
+frame = 1
+
+[node name="stars8" type="Sprite" parent="ParallaxBackground/StarLayer"]
+position = Vector2( 189.274, 7.32408 )
+z_index = -2
+texture = ExtResource( 4 )
+hframes = 4
+frame = 3
+
+[node name="stars9" type="Sprite" parent="ParallaxBackground/StarLayer"]
+position = Vector2( 177.114, -66.9792 )
+z_index = -2
+texture = ExtResource( 4 )
+hframes = 4
+frame = 2
+
+[node name="stars10" type="Sprite" parent="ParallaxBackground/StarLayer"]
+position = Vector2( -264.219, -56.3124 )
+z_index = -2
+texture = ExtResource( 4 )
+hframes = 4
+
+[node name="stars11" type="Sprite" parent="ParallaxBackground/StarLayer"]
+position = Vector2( 241.825, -60.0119 )
+z_index = -2
+texture = ExtResource( 4 )
+hframes = 4
+frame = 1
+
+[node name="stars12" type="Sprite" parent="ParallaxBackground/StarLayer"]
+position = Vector2( 313.045, -46.2173 )
+z_index = -2
+texture = ExtResource( 4 )
+hframes = 4
+frame = 2
+
+[node name="stars13" type="Sprite" parent="ParallaxBackground/StarLayer"]
+position = Vector2( 323.378, -67.2506 )
+z_index = -2
+texture = ExtResource( 4 )
+hframes = 4
+frame = 1
+
+[node name="stars14" type="Sprite" parent="ParallaxBackground/StarLayer"]
+position = Vector2( 363.432, -43.8098 )
+z_index = -2
+texture = ExtResource( 4 )
+hframes = 4
+frame = 2
+
+[node name="stars15" type="Sprite" parent="ParallaxBackground/StarLayer"]
+position = Vector2( -172, -81.3468 )
+z_index = -2
+texture = ExtResource( 4 )
+hframes = 4
+frame = 3
+
+[node name="stars16" type="Sprite" parent="ParallaxBackground/StarLayer"]
+position = Vector2( -366.972, -51.381 )
+z_index = -2
+texture = ExtResource( 4 )
+hframes = 4
+frame = 1
+
+[node name="EarthLayer" type="ParallaxLayer" parent="ParallaxBackground"]
+z_index = -1
+motion_scale = Vector2( 0.5, 0.65 )
+
+[node name="earth" type="Sprite" parent="ParallaxBackground/EarthLayer"]
+position = Vector2( -137, -40 )
+texture = ExtResource( 3 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Sprite" type="Sprite" parent="ParallaxBackground/EarthLayer"]
+position = Vector2( -241.26, -19.9371 )
+texture = ExtResource( 2 )
+
+[node name="Window" type="Sprite" parent="."]
+position = Vector2( 0, -32 )
+z_index = -1
+texture = ExtResource( 6 )
 
 [node name="CurrentLevel" type="Node2D" parent="."]
 
-[node name="Character" parent="." instance=ExtResource( 1 )]
-position = Vector2( -114.623, 30.5602 )
+[node name="YSort" type="YSort" parent="." groups=[
+"Spawner",
+]]
+
+[node name="Character" parent="YSort" instance=ExtResource( 1 )]
+position = Vector2( -46.7082, 32.3593 )
 Speed = 120.0

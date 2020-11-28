@@ -1,0 +1,14 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://scenes/state_machine/PhysicsState.tscn" type="PackedScene" id=1]
+[ext_resource path="res://scenes/state_machine/FollowTargetPhysicsState.gd" type="Script" id=2]
+[ext_resource path="res://addons/Navigator2D/navigator.gd" type="Script" id=3]
+
+[node name="FollowTargetPhysicsState" instance=ExtResource( 1 )]
+script = ExtResource( 2 )
+
+[node name="Navigator2D" type="Node2D" parent="." index="0"]
+script = ExtResource( 3 )
+Speed = 75.0
+OptimizePath = true
+LookAt = false

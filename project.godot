@@ -102,11 +102,14 @@ ui_swap_weapons={
 2d_physics/layer_5="Enemy"
 2d_physics/layer_6="EnemyBullet"
 2d_physics/layer_7="EnemyExplosive"
+2d_physics/layer_8="Triggers"
 
 [rendering]
 
+quality/2d/use_nvidia_rect_flicker_workaround=true
 quality/intended_usage/framebuffer_allocation=0
 quality/intended_usage/framebuffer_allocation.mobile=0
+quality/2d/use_transform_snap=true
 quality/depth_prepass/enable=false
 quality/depth_prepass/disable_for_vendors="PowerVR,Mali,Adreno"
 quality/skinning/software_skinning_fallback=false

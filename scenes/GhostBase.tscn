@@ -2,7 +2,9 @@
 
 [ext_resource path="res://scenes/state_machine/StateMachine.tscn" type="PackedScene" id=1]
 
-[node name="GhostBase" type="Area2D"]
+[node name="GhostBase" type="Area2D" groups=[
+"Enemy",
+]]
 collision_layer = 16
 collision_mask = 78
 

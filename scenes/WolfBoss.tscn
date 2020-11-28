@@ -1,0 +1,262 @@
+[gd_scene load_steps=15 format=2]
+
+[ext_resource path="res://assets/images/wolf1.png" type="Texture" id=1]
+[ext_resource path="res://scenes/WeaponArea.gd" type="Script" id=2]
+[ext_resource path="res://scenes/state_machine/NormalDamageState.tscn" type="PackedScene" id=3]
+[ext_resource path="res://scenes/state_machine/StateMachine.tscn" type="PackedScene" id=4]
+[ext_resource path="res://scenes/state_machine/WanderingPhysicsState.tscn" type="PackedScene" id=5]
+[ext_resource path="res://scenes/WolfBoss.gd" type="Script" id=6]
+[ext_resource path="res://scenes/state_machine/FollowTargetPhysicsState.tscn" type="PackedScene" id=7]
+
+[sub_resource type="CapsuleShape2D" id=1]
+height = 6.0
+
+[sub_resource type="CapsuleShape2D" id=2]
+height = 6.0
+
+[sub_resource type="CapsuleShape2D" id=3]
+
+[sub_resource type="Animation" id=4]
+length = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2, 3, 4 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Sprite/WeaponArea/CollisionShape2D:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 4.95598, 8.16231 ), Vector2( 6.61852, 9.11234 ), Vector2( -11.0757, 2.69968 ), Vector2( 2.69969, 4.12472 ), Vector2( -9.1756, 3.05594 ), Vector2( 4.95598, 8.16231 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Sprite/WeaponArea/CollisionShape2D:rotation_degrees")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ 54.5698, 29.2141, -42.9445, -61.0191, -61.0191, 54.5698 ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("Sprite/WeaponArea/CollisionShape2D2:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 0.2, 0.3, 0.4 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ), Vector2( 11.6378, 2.13755 ), Vector2( -9.14398, -0.356258 ), Vector2( -3.68134, 1.30628 ) ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("Sprite/WeaponArea/CollisionShape2D2:rotation_degrees")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0, 0.2, 0.3, 0.4, 0.5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ 45.0, -61.0, -61.0, -61.0, 45.0 ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("Sprite/WeaponArea/CollisionShape2D:disabled")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0, 0.2, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ true, false, true ]
+}
+tracks/6/type = "value"
+tracks/6/path = NodePath("Sprite/WeaponArea/CollisionShape2D2:disabled")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 0, 0.2, 0.3, 0.4 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ true, true, false, true ]
+}
+
+[sub_resource type="Animation" id=5]
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 0, 1 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Sprite/WeaponArea/CollisionShape2D2:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Sprite/WeaponArea/CollisionShape2D:disabled")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+
+[sub_resource type="Animation" id=6]
+length = 0.4
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 6, 7, 8, 5 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Sprite/WeaponArea/CollisionShape2D:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Sprite/WeaponArea/CollisionShape2D2:disabled")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+
+[sub_resource type="Animation" id=7]
+length = 0.2
+step = 0.01
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.05, 0.1, 0.15, 0.2 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 0.992157, 1, 0, 1 ), Color( 1, 1, 1, 1 ), Color( 0.992157, 1, 0, 1 ), Color( 1, 1, 1, 1 ) ]
+}
+
+[node name="WolfBoss" type="Area2D"]
+collision_layer = 16
+collision_mask = 12
+script = ExtResource( 6 )
+HP = 100
+
+[node name="Sprite" type="Sprite" parent="."]
+position = Vector2( 0, -24 )
+texture = ExtResource( 1 )
+hframes = 5
+vframes = 2
+
+[node name="WeaponArea" type="Area2D" parent="Sprite"]
+collision_layer = 16
+collision_mask = 2
+script = ExtResource( 2 )
+Damage = 10
+WeaponType = "Blade"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite/WeaponArea"]
+position = Vector2( 4.95598, 8.16231 )
+rotation = 0.952423
+shape = SubResource( 1 )
+disabled = true
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Sprite/WeaponArea"]
+rotation = 0.785398
+shape = SubResource( 2 )
+disabled = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( 0.237511, -20.4255 )
+shape = SubResource( 3 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "Idle"
+anims/Attack = SubResource( 4 )
+anims/Idle = SubResource( 5 )
+anims/Walk = SubResource( 6 )
+
+[node name="DamageAnimationPlayer" type="AnimationPlayer" parent="."]
+anims/TakeDamage = SubResource( 7 )
+
+[node name="StateMachine" parent="." instance=ExtResource( 4 )]
+
+[node name="PhysicsStates" type="Node" parent="StateMachine"]
+
+[node name="WanderingPhysicsState" parent="StateMachine/PhysicsStates" instance=ExtResource( 5 )]
+NextState = NodePath("../FollowTargetPhysicsState")
+TimeBetweenNewPositions = 2.0
+TimesToWander = 3
+
+[node name="FollowTargetPhysicsState" parent="StateMachine/PhysicsStates" instance=ExtResource( 7 )]
+TimeBetweenNewPositions = 0.5
+MovementSpeed = 150.0
+
+[node name="DamageStates" type="Node" parent="StateMachine"]
+
+[node name="NormalDamageState" parent="StateMachine/DamageStates" instance=ExtResource( 3 )]
+
+[connection signal="area_entered" from="." to="." method="_on_WolfBoss_area_entered"]
+[connection signal="body_entered" from="Sprite/WeaponArea" to="." method="_on_WeaponArea_body_entered"]

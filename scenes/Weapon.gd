@@ -6,6 +6,8 @@ const Gun = "Gun"
 const Fist = "Fist"
 const Blade = "Blade"
 
+export (Texture) var IconTexture
+
 func activate_weapon() -> void:
     pass
     

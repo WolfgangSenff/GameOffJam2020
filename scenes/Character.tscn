@@ -1,13 +1,19 @@
-[gd_scene load_steps=19 format=2]
+[gd_scene load_steps=30 format=2]
 
 [ext_resource path="res://scenes/Character.gd" type="Script" id=1]
 [ext_resource path="res://scenes/WeaponChanger.gd" type="Script" id=2]
 [ext_resource path="res://assets/images/spacial_forces_unit_spritesheet.png" type="Texture" id=3]
 [ext_resource path="res://scenes/GunWeapon.tscn" type="PackedScene" id=4]
 [ext_resource path="res://scenes/CommandoHatchet.tscn" type="PackedScene" id=5]
+[ext_resource path="res://scenes/CommandoCrossbow.tscn" type="PackedScene" id=6]
+[ext_resource path="res://scenes/WeaponChangerGUI.gd" type="Script" id=7]
+[ext_resource path="res://assets/images/crossbow_icon.png" type="Texture" id=8]
+[ext_resource path="res://assets/images/shotgunshells_bullets_under.png" type="Texture" id=9]
+[ext_resource path="res://assets/images/shotgunshells_bullets_progress.png" type="Texture" id=10]
+[ext_resource path="res://assets/images/shotgunshells_bullets_over.png" type="Texture" id=11]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 6.9541, 2.08549 )
+extents = Vector2( 10, 2.08549 )
 
 [sub_resource type="Animation" id=2]
 resource_name = "Idle"
@@ -23,7 +29,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 1,
-"values": [ 0 ]
+"values": [ 12 ]
 }
 
 [sub_resource type="Animation" id=3]
@@ -39,12 +45,12 @@ tracks/0/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 1,
-"values": [ 0 ]
+"values": [ 12 ]
 }
 
 [sub_resource type="Animation" id=4]
 resource_name = "Run"
-length = 0.6
+length = 1.2
 loop = true
 tracks/0/type = "value"
 tracks/0/path = NodePath("UnitSprite:frame")
@@ -53,62 +59,108 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5 ),
-"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1, 1.1 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
 "update": 1,
-"values": [ 0, 1, 2, 3, 4, 5 ]
+"values": [ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11 ]
 }
 
-[sub_resource type="AnimationNodeAnimation" id=5]
-animation = "Idle"
+[sub_resource type="Animation" id=5]
+resource_name = "TakeDamage"
+length = 0.2
+step = 0.01
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.05, 0.1, 0.15, 0.2 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 0.945098, 0.933333, 0.168627, 1 ), Color( 1, 1, 1, 1 ), Color( 0.945098, 0.933333, 0.168627, 1 ), Color( 1, 1, 1, 1 ) ]
+}
 
 [sub_resource type="AnimationNodeAnimation" id=6]
-animation = "Reset"
+animation = "Idle"
 
 [sub_resource type="AnimationNodeAnimation" id=7]
+animation = "Reset"
+
+[sub_resource type="AnimationNodeAnimation" id=8]
 animation = "Run"
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=8]
+[sub_resource type="AnimationNodeTimeScale" id=9]
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=9]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=10]
+[sub_resource type="AnimationNodeBlendTree" id=10]
+graph_offset = Vector2( -375, 10 )
+nodes/Animation/node = SubResource( 8 )
+nodes/Animation/position = Vector2( -350, 80 )
+nodes/TimeScale/node = SubResource( 9 )
+nodes/TimeScale/position = Vector2( -90, 70 )
+nodes/output/position = Vector2( 180, 70 )
+node_connections = [ "TimeScale", 0, "Animation", "output", 0, "TimeScale" ]
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=11]
 
-[sub_resource type="AnimationNodeStateMachine" id=12]
-states/Idle/node = SubResource( 5 )
+[sub_resource type="AnimationNodeStateMachineTransition" id=12]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=13]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=14]
+
+[sub_resource type="AnimationNodeStateMachine" id=15]
+states/Idle/node = SubResource( 6 )
 states/Idle/position = Vector2( 341.5, 79 )
-states/Reset/node = SubResource( 6 )
+states/Reset/node = SubResource( 7 )
 states/Reset/position = Vector2( 153, 89.5 )
-states/Run/node = SubResource( 7 )
-states/Run/position = Vector2( 325.5, 219.5 )
-transitions = [ "Reset", "Idle", SubResource( 8 ), "Idle", "Reset", SubResource( 9 ), "Reset", "Run", SubResource( 10 ), "Run", "Reset", SubResource( 11 ) ]
+states/Run/node = SubResource( 10 )
+states/Run/position = Vector2( 274, 198 )
+transitions = [ "Reset", "Idle", SubResource( 11 ), "Idle", "Reset", SubResource( 12 ), "Reset", "Run", SubResource( 13 ), "Run", "Reset", SubResource( 14 ) ]
 start_node = "Reset"
-graph_offset = Vector2( -146, -4 )
+graph_offset = Vector2( -140, -2 )
 
-[sub_resource type="AnimationNodeStateMachinePlayback" id=13]
+[sub_resource type="AnimationNodeStateMachinePlayback" id=16]
 
-[node name="Character" type="KinematicBody2D"]
+[sub_resource type="CapsuleShape2D" id=17]
+height = 12.0
+
+[sub_resource type="RectangleShape2D" id=18]
+extents = Vector2( 10, 20 )
+
+[node name="Character" type="KinematicBody2D" groups=[
+"Player",
+]]
+collision_layer = 0
 script = ExtResource( 1 )
 
 [node name="UnitSprite" type="Sprite" parent="."]
+position = Vector2( 0, -12 )
 texture = ExtResource( 3 )
-hframes = 3
-vframes = 2
+centered = false
+offset = Vector2( -16, -36 )
+hframes = 6
+vframes = 3
+frame = 12
 
 [node name="WeaponChanger" type="Node2D" parent="UnitSprite"]
 script = ExtResource( 2 )
 
-[node name="Gun" parent="UnitSprite/WeaponChanger" instance=ExtResource( 4 )]
-visible = false
-
 [node name="Hatchet" parent="UnitSprite/WeaponChanger" instance=ExtResource( 5 )]
 visible = false
-position = Vector2( 5.69208, 1.7411 )
+position = Vector2( 6, -12 )
+
+[node name="Crossbow" parent="UnitSprite/WeaponChanger" instance=ExtResource( 6 )]
+visible = false
+position = Vector2( 4, -10 )
+
+[node name="Gun" parent="UnitSprite/WeaponChanger" instance=ExtResource( 4 )]
+visible = false
+position = Vector2( 2, -12 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2( -0.736622, 16.9423 )
+position = Vector2( 0, -2 )
 shape = SubResource( 1 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
@@ -116,8 +168,86 @@ anims/Idle = SubResource( 2 )
 anims/Reset = SubResource( 3 )
 anims/Run = SubResource( 4 )
 
+[node name="DamageAnimationPlayer" type="AnimationPlayer" parent="."]
+anims/TakeDamage = SubResource( 5 )
+
 [node name="AnimationTree" type="AnimationTree" parent="."]
-tree_root = SubResource( 12 )
+tree_root = SubResource( 15 )
 anim_player = NodePath("../AnimationPlayer")
 active = true
-parameters/playback = SubResource( 13 )
+parameters/playback = SubResource( 16 )
+parameters/Run/TimeScale/scale = 2.0
+
+[node name="PlayerGUI" type="CanvasLayer" parent="."]
+
+[node name="MarginContainer" type="MarginContainer" parent="PlayerGUI"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_constants/margin_right = 10
+custom_constants/margin_top = 20
+custom_constants/margin_left = 10
+custom_constants/margin_bottom = 10
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Control" type="Control" parent="PlayerGUI/MarginContainer"]
+margin_left = 10.0
+margin_top = 20.0
+margin_right = 246.0
+margin_bottom = 150.0
+
+[node name="WeaponChangerGUI" type="Control" parent="PlayerGUI/MarginContainer/Control"]
+anchor_left = 0.932
+anchor_top = -0.108
+anchor_right = 1.0
+margin_left = 4.04799
+margin_top = -1.96
+margin_right = 6.0
+script = ExtResource( 7 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureRect" type="TextureRect" parent="PlayerGUI/MarginContainer/Control/WeaponChangerGUI"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -8.0
+margin_top = -8.0
+margin_right = 8.0
+margin_bottom = 8.0
+texture = ExtResource( 8 )
+
+[node name="ShotgunShellProgress" type="TextureProgress" parent="PlayerGUI/MarginContainer/Control/WeaponChangerGUI"]
+visible = false
+margin_top = 16.0
+margin_right = 18.0
+margin_bottom = 26.0
+max_value = 18.0
+step = 1.0
+value = 17.0
+texture_under = ExtResource( 9 )
+texture_over = ExtResource( 11 )
+texture_progress = ExtResource( 10 )
+
+[node name="PlayerHitbox" type="Area2D" parent="."]
+position = Vector2( 0, -20 )
+collision_layer = 2
+collision_mask = 96
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerHitbox"]
+shape = SubResource( 17 )
+
+[node name="DamageTimer" type="Timer" parent="."]
+
+[node name="PlayerTriggerArea" type="Area2D" parent="."]
+position = Vector2( 0, -20 )
+collision_layer = 0
+collision_mask = 128
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerTriggerArea"]
+shape = SubResource( 18 )
+
+[connection signal="area_entered" from="PlayerHitbox" to="." method="_on_PlayerHitbox_area_entered"]

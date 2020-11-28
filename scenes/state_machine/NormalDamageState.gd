@@ -6,3 +6,4 @@ func handle_damage(weapon, from_direction : Vector2) -> void:
         character.dies()
     else:
         character.HP -= amount
+        character.take_damage()

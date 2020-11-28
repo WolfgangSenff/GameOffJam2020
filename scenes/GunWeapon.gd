@@ -5,6 +5,9 @@ const BulletScene = preload("res://scenes/ShotgunBullet.tscn")
 onready var shotgun_fire_position = $GunSprite/FirePosition
 onready var anim = $GunAnimationPlayer
 
+var max_bullet_count = 8
+var bullet_count = 8
+
 var velocity = Vector2.ZERO
 
 func activate_weapon() -> void:
@@ -14,10 +17,14 @@ func deactivate_weapon() -> void:
     pass
     
 func main_activation(_velocity : Vector2 = Vector2(0, 0)) -> void:
-    velocity = _velocity
-    anim.play("Shoot")
+    if bullet_count > 0:
+        bullet_count -= 1
+        velocity = _velocity
+        anim.play("Shoot")
 
 func secondary_activation(_velocity : Vector2 = Vector2(0, 0)) -> void:
+    bullet_count = max_bullet_count
+    get_tree().call_group("WeaponChangerGUI", "update")
     velocity = _velocity
     anim.play("Cock")
     

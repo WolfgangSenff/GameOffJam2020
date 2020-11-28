@@ -1,9 +1,29 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://assets/images/Boxes2-Background.png" type="Texture" id=1]
 [ext_resource path="res://scenes/LevelBase.tscn" type="PackedScene" id=2]
+[ext_resource path="res://scenes/BrownHauntedBall.tscn" type="PackedScene" id=3]
+[ext_resource path="res://scenes/SpawningDoor.tscn" type="PackedScene" id=4]
+[ext_resource path="res://scenes/GreenHauntedBall.tscn" type="PackedScene" id=5]
+[ext_resource path="res://scenes/OrangeHauntedBall.tscn" type="PackedScene" id=6]
+[ext_resource path="res://resources/levels/SpaceLevel.tres" type="Resource" id=7]
+[ext_resource path="res://scenes/levels/WarehouseWingCorridor1.gd" type="Script" id=8]
 
 [node name="WarehouseWingCorridor2" instance=ExtResource( 2 )]
+script = ExtResource( 8 )
 
 [node name="Background" parent="." index="1"]
 texture = ExtResource( 1 )
+
+[node name="StartPosition" parent="." index="8"]
+position = Vector2( 112.215, 41.7844 )
+rotation = 3.14159
+
+[node name="LevelExit" parent="." index="9"]
+position = Vector2( -123.264, 42.6642 )
+ConnectedLevel = ExtResource( 7 )
+
+[node name="SpawningDoor" parent="." index="10" instance=ExtResource( 4 )]
+position = Vector2( -5.59999, 62.4612 )
+EnemiesToSpawn = [ ExtResource( 3 ), ExtResource( 5 ), ExtResource( 3 ), ExtResource( 6 ) ]
+SpawnTimes = [ 0.5, 0.5, 0.5, 0.5 ]

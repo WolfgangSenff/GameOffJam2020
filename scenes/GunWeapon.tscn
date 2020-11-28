@@ -7,7 +7,7 @@
 resource_name = "Cock"
 length = 0.3
 tracks/0/type = "value"
-tracks/0/path = NodePath("./GunSprite:frame")
+tracks/0/path = NodePath("GunSprite:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -19,7 +19,7 @@ tracks/0/keys = {
 "values": [ 5, 6, 7 ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath("./GunSprite:rotation_degrees")
+tracks/1/path = NodePath("GunSprite:rotation_degrees")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
@@ -36,7 +36,7 @@ resource_name = "Idle"
 length = 5.0
 loop = true
 tracks/0/type = "value"
-tracks/0/path = NodePath("./GunSprite:rotation_degrees")
+tracks/0/path = NodePath("GunSprite:rotation_degrees")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -52,7 +52,7 @@ tracks/0/keys = {
 resource_name = "Reset"
 length = 0.1
 tracks/0/type = "value"
-tracks/0/path = NodePath("./GunSprite:rotation_degrees")
+tracks/0/path = NodePath("GunSprite:rotation_degrees")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -68,7 +68,7 @@ tracks/0/keys = {
 resource_name = "Shoot"
 length = 0.5
 tracks/0/type = "value"
-tracks/0/path = NodePath("./GunSprite:frame")
+tracks/0/path = NodePath("GunSprite:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -80,7 +80,7 @@ tracks/0/keys = {
 "values": [ 0, 1, 2, 3, 4 ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath("./GunSprite:rotation_degrees")
+tracks/1/path = NodePath("GunSprite:rotation_degrees")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false

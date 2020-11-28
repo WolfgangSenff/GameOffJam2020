@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://scenes/RedHauntedBall.tscn" type="PackedScene" id=1]
+[ext_resource path="res://assets/images/haunted_ball_brown.png" type="Texture" id=2]
+
+[node name="BrownHauntedBall" instance=ExtResource( 1 )]
+HP = 65
+
+[node name="Sprite" parent="." index="0"]
+texture = ExtResource( 2 )
+
+[node name="WanderingPhysicsState" parent="StateMachine/PhysicsStates" index="0"]
+NextState = NodePath("../../../../RedHauntedBall/StateMachine/PhysicsStates/WanderingPhysicsState")

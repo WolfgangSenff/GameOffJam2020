@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://scenes/Gismo.tscn" type="PackedScene" id=1]
+[ext_resource path="res://scenes/GismoIcon.gd" type="Script" id=2]
+
+[node name="GismoIcon" type="ViewportContainer"]
+anchor_left = 0.031
+anchor_top = 0.069
+anchor_right = 0.277
+anchor_bottom = 0.621
+margin_left = -0.0299997
+margin_top = -0.00199986
+margin_right = 89.99
+margin_bottom = 17.982
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="GismoRoot" parent="." instance=ExtResource( 1 )]
