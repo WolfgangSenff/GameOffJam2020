@@ -10,4 +10,4 @@ script = ExtResource( 1 )
 modulate = Color( 1, 1, 1, 0 )
 
 [node name="SpawnPosition" type="Position2D" parent="." index="2"]
-position = Vector2( 0.0745543, -0.118907 )
+position = Vector2( 0.0745543, 2.88109 )

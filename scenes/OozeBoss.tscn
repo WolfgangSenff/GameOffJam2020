@@ -95,7 +95,6 @@ blend_point_1/node = SubResource( 9 )
 blend_point_1/pos = -1.0
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=11]
-switch_mode = 2
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=12]
 switch_mode = 2
@@ -125,7 +124,6 @@ texture = ExtResource( 4 )
 centered = false
 hframes = 6
 vframes = 3
-frame = 1
 
 [node name="WeaponArea" type="Area2D" parent="Sprite"]
 position = Vector2( 19.6233, 24.6024 )

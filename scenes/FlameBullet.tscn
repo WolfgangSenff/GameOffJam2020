@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://scenes/ShotgunBullet.tscn" type="PackedScene" id=1]
+[ext_resource path="res://scenes/FlameBullet.gd" type="Script" id=2]
+
+[sub_resource type="CircleShape2D" id=1]
+radius = 6.0
+
+[node name="FlameBullet" instance=ExtResource( 1 )]
+collision_layer = 32
+collision_mask = 256
+script = ExtResource( 2 )
+Speed = 350.0
+Damage = 10.0
+
+[node name="AnimatedSprite" parent="." index="0"]
+animation = "FireFlame"
+frame = 3
+
+[node name="CollisionShape2D" parent="." index="1"]
+position = Vector2( 5.60717, -0.937519 )
+shape = SubResource( 1 )

@@ -17,6 +17,7 @@ func _ready() -> void:
 
 func give_next_weapon() -> void:
     max_weapon_index += 1
+    current_weapon_index = max_weapon_index
     self.current_weapon = children[max_weapon_index]
 
 func _physics_process(delta: float) -> void:            

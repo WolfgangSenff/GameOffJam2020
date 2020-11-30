@@ -150,7 +150,7 @@ __meta__ = {
 }
 
 [node name="Sprite" type="Sprite" parent="ParallaxBackground/EarthLayer"]
-position = Vector2( -241.26, -19.9371 )
+position = Vector2( 214.285, -17.7351 )
 texture = ExtResource( 2 )
 
 [node name="Window" type="Sprite" parent="."]

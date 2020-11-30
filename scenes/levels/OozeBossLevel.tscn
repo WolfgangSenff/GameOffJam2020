@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://scenes/Grate.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scenes/levels/OozeBossStage.gd" type="Script" id=2]
@@ -8,6 +8,7 @@
 [ext_resource path="res://assets/images/SmallBox2.png" type="Texture" id=6]
 [ext_resource path="res://assets/images/ship_ground_right2.png" type="Texture" id=7]
 [ext_resource path="res://scenes/GismoTrigger.tscn" type="PackedScene" id=8]
+[ext_resource path="res://resources/levels/Hub.tres" type="Resource" id=9]
 
 [node name="OozeBossLevel" instance=ExtResource( 4 )]
 script = ExtResource( 2 )
@@ -39,7 +40,14 @@ rotation = 3.14159
 
 [node name="LevelExit" parent="." index="13"]
 position = Vector2( -126.106, 47.4228 )
+ConnectedLevel = ExtResource( 9 )
 
 [node name="GismoTrigger" parent="." index="14" instance=ExtResource( 8 )]
-position = Vector2( -105.142, 46.081 )
+position = Vector2( -92.3778, 46.081 )
 GismoText = "Uuuughhhh. Sorry. Something's come up on me. Let's get back to the hub."
+
+[node name="CollisionShape2D" parent="GismoTrigger" index="0"]
+disabled = true
+
+[editable path="LevelExit"]
+[editable path="GismoTrigger"]

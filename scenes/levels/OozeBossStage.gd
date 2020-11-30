@@ -24,10 +24,12 @@ func on_enemy_killed() -> void:
         yield(finish_level(), "completed")
         emit_signal("all_enemies_killed")
 
-func enable_exit() -> void:
-    get_tree().call_group("World", "switch_level", preload("res://resources/levels/Hub.tres"))
+func enable_exit() -> void:    
+    $GismoTrigger/CollisionShape2D.set_deferred("disabled", false)
+    yield(get_tree(), "physics_frame")
+    $LevelExit.enable_exit()
         
 func finish_level() -> void:
+    GameState.hub_warehouse_complete = true
     get_tree().get_nodes_in_group("Player")[0].give_next_weapon()
-    $GismoTrigger/CollisionShape2D.set_deferred("disabled", false)
-    yield($GismoTrigger, "trigger_tripped")
+    yield(get_tree(), "physics_frame")

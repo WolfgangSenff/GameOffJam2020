@@ -4,7 +4,15 @@ var levels = {
     preload("res://resources/levels/SpaceLevel.tres") : preload("res://scenes/levels/SpaceLevelLeft.tscn"),
     preload("res://resources/levels/OozeLevel.tres") : preload("res://scenes/levels/OozeBossLevel.tscn"),
     preload("res://resources/levels/WarehouseWing1.tres") : preload("res://scenes/levels/WarehouseWingCorridor1.tscn"),
-    preload("res://resources/levels/WarehouseWing2.tres") : preload("res://scenes/levels/WarehouseWingCorridor2.tscn")
+    preload("res://resources/levels/WarehouseWing2.tres") : preload("res://scenes/levels/WarehouseWingCorridor2.tscn"),
+    preload("res://resources/levels/WarehouseWing3.tres") : preload("res://scenes/levels/WarehouseWingCorridor3.tscn"),
+    preload("res://resources/levels/ScienceLevel1.tres") : preload("res://scenes/levels/ScienceLevel1.tscn"),
+    preload("res://resources/levels/ScienceLevel2.tres") : preload("res://scenes/levels/ScienceLevel2.tscn"),
+    preload("res://resources/levels/ScienceLevel3.tres") : preload("res://scenes/levels/ScienceLevel3.tscn"),
+    preload("res://resources/levels/ScienceLevel4.tres") : preload("res://scenes/levels/ScienceLevel4.tscn"),
+    preload("res://resources/levels/ScienceLevel5.tres") : preload("res://scenes/levels/ScienceLevel5.tscn"),
+    preload("res://resources/levels/ScienceLevel6.tres") : preload("res://scenes/levels/ScienceLevel6.tscn"),
+    preload("res://resources/levels/Hub.tres") : preload("res://scenes/levels/HubLevel.tscn")
    }
 
 onready var current_level setget set_current_level
@@ -13,7 +21,7 @@ onready var character = $YSort/Character
 
 func _ready() -> void:
     randomize()
-    self.current_level = levels[preload("res://resources/levels/WarehouseWing1.tres")].instance()
+    self.current_level = levels[preload("res://resources/levels/Hub.tres")].instance()
     
 func set_current_level(value):
     if !current_level:
@@ -41,4 +49,5 @@ func on_enemies_all_killed() -> void:
     current_level.enable_exit()
     
 func switch_level(level_res : Resource) -> void:
-    self.current_level = levels[level_res].instance()
+    if levels.has(level_res):
+        self.current_level = levels[level_res].instance()

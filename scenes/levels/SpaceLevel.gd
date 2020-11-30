@@ -26,9 +26,12 @@ func on_light_finished(animation) -> void:
 
 func _on_RightToMid_area_entered(area: Area2D) -> void:
     $RightToMid/CollisionShape2D.set_deferred("disabled", true)
-    yield($SpawningDoor.start_spawning(), "completed")
-    yield($SpawningDoor2.start_spawning(), "completed")
-    yield($SpawningDoor3.start_spawning(), "completed")
+    
+    var spawn_in_node = get_tree().get_nodes_in_group("Spawner")[0]
+    var first_door = swap_door($SpawningDoor, spawn_in_node)   
+    var second_door = swap_door($SpawningDoor2, spawn_in_node) 
+    first_door.start_spawning()
+    yield(second_door.start_spawning(), "completed")
     var all_enemies = get_tree().get_nodes_in_group("Enemy")
     if all_enemies.size() == 0:
         emit_signal("all_enemies_killed")
@@ -37,6 +40,11 @@ func _on_RightToMid_area_entered(area: Area2D) -> void:
         remaining_enemy_count = all_enemies.size()
         for enemy in all_enemies:
             enemy.connect("killed", self, "on_enemy_killed", [], CONNECT_ONESHOT)
+
+func swap_door(door, spawn) -> Node:
+    remove_child(door)
+    spawn.add_child(door)
+    return door
 
 func on_enemy_killed() -> void:
     remaining_enemy_count -= 1

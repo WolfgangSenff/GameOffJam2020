@@ -18,13 +18,14 @@ func deactivate_weapon() -> void:
     
 func main_activation(_velocity : Vector2 = Vector2(0, 0)) -> void:
     if bullet_count > 0:
+        get_tree().call_group("WeaponChangerGUI", "update_gui", false)
         bullet_count -= 1
         velocity = _velocity
         anim.play("Shoot")
 
 func secondary_activation(_velocity : Vector2 = Vector2(0, 0)) -> void:
     bullet_count = max_bullet_count
-    get_tree().call_group("WeaponChangerGUI", "update")
+    get_tree().call_group("WeaponChangerGUI", "update_gui", true)
     velocity = _velocity
     anim.play("Cock")
     

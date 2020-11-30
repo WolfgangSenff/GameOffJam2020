@@ -37,9 +37,11 @@ func _physics_process(delta: float) -> void:
     if is_instance_valid(self) and is_instance_valid(state_machine) and is_instance_valid(state_machine.current_physics_state) and state_machine.current_physics_state:
         state_machine.current_physics_state.handle_physics(delta)
         if state_machine.current_physics_state.is_moving:
-            anim.travel("Moving")
+            if anim.get_current_node() != "Grossify":
+                anim.travel("Moving")
         elif state_machine.current_physics_state.is_idle:
-            anim.travel("Moving")
+            if anim.get_current_node() != "Grossify":
+                anim.travel("Moving")
         elif state_machine.current_physics_state.is_attacking:
             anim.travel("Grossify")
 

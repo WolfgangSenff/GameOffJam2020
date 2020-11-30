@@ -11,10 +11,11 @@ var temp_speed = 0.0
 func _physics_process(delta: float) -> void:
     position += Speed * Vector2.RIGHT.rotated(rotation) * delta
 
-func fire() -> void:
+func fire(animation : String = "Fire") -> void:
     var movement_speed = Speed
     Speed = temp_speed
-    sprite.play("Fire")
+    sprite.play(animation)
     yield(sprite, "animation_finished")
     set_physics_process(true)
     Speed = movement_speed
+

@@ -33,6 +33,7 @@ config/icon="res://icon.png"
 [autoload]
 
 Projectiles="*res://globals/Projectiles.gd"
+GameState="*res://globals/GameState.gd"
 
 [debug]
 
@@ -103,6 +104,7 @@ ui_swap_weapons={
 2d_physics/layer_6="EnemyBullet"
 2d_physics/layer_7="EnemyExplosive"
 2d_physics/layer_8="Triggers"
+2d_physics/layer_9="PlayerHitbox"
 
 [rendering]
 
