@@ -1,8 +1,9 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://assets/images/spacial_forces_unit_hatchet_spritesheet.png" type="Texture" id=1]
 [ext_resource path="res://scenes/CommandoHatchet.gd" type="Script" id=2]
 [ext_resource path="res://scenes/EnemyHitArea.gd" type="Script" id=3]
+[ext_resource path="res://assets/sounds/263595__porkmuncher__swoosh.wav" type="AudioStream" id=4]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 4.39601, 17.0992 )
@@ -70,6 +71,20 @@ tracks/4/keys = {
 "transitions": PoolRealArray( 1 ),
 "update": 0,
 "values": [ 0.0 ]
+}
+tracks/5/type = "audio"
+tracks/5/path = NodePath("AudioStreamPlayer")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"clips": [ {
+"end_offset": 1.61258,
+"start_offset": 0.0,
+"stream": ExtResource( 4 )
+} ],
+"times": PoolRealArray( 0.19 )
 }
 
 [sub_resource type="Animation" id=3]
@@ -191,6 +206,20 @@ tracks/4/keys = {
 "update": 0,
 "values": [ 0.0 ]
 }
+tracks/5/type = "audio"
+tracks/5/path = NodePath("AudioStreamPlayer")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"clips": [ {
+"end_offset": 1.1146,
+"start_offset": 0.5,
+"stream": ExtResource( 4 )
+} ],
+"times": PoolRealArray( 0.2 )
+}
 
 [node name="Hatchet" type="Node2D"]
 script = ExtResource( 2 )
@@ -199,7 +228,7 @@ script = ExtResource( 2 )
 collision_layer = 4
 collision_mask = 16
 script = ExtResource( 3 )
-Damage = 120.0
+Damage = 12.0
 WeaponType = "Blade"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="EnemyHitArea"]
@@ -222,3 +251,6 @@ anims/Down = SubResource( 2 )
 anims/Idle = SubResource( 3 )
 anims/Reset = SubResource( 4 )
 anims/Slash = SubResource( 5 )
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 4 )

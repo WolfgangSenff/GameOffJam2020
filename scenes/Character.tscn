@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=2]
+[gd_scene load_steps=33 format=2]
 
 [ext_resource path="res://scenes/Character.gd" type="Script" id=1]
 [ext_resource path="res://scenes/WeaponChanger.gd" type="Script" id=2]
@@ -11,6 +11,9 @@
 [ext_resource path="res://assets/images/shotgunshells_bullets_under.png" type="Texture" id=9]
 [ext_resource path="res://assets/images/shotgunshells_bullets_progress.png" type="Texture" id=10]
 [ext_resource path="res://assets/images/shotgunshells_bullets_over.png" type="Texture" id=11]
+[ext_resource path="res://assets/images/health_texture_under.png" type="Texture" id=12]
+[ext_resource path="res://assets/images/health_texture_over.png" type="Texture" id=13]
+[ext_resource path="res://assets/images/health_texture_highlight.png" type="Texture" id=14]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 10, 2.08549 )
@@ -183,6 +186,7 @@ parameters/Run/TimeScale/scale = 2.0
 [node name="MarginContainer" type="MarginContainer" parent="PlayerGUI"]
 anchor_right = 1.0
 anchor_bottom = 1.0
+mouse_filter = 2
 custom_constants/margin_right = 10
 custom_constants/margin_top = 20
 custom_constants/margin_left = 10
@@ -196,6 +200,7 @@ margin_left = 10.0
 margin_top = 20.0
 margin_right = 246.0
 margin_bottom = 150.0
+mouse_filter = 2
 
 [node name="WeaponChangerGUI" type="Control" parent="PlayerGUI/MarginContainer/Control" groups=[
 "WeaponChangerGUI",
@@ -206,6 +211,7 @@ anchor_right = 1.0
 margin_left = 4.04799
 margin_top = -1.96
 margin_right = 6.0
+mouse_filter = 2
 script = ExtResource( 7 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -220,18 +226,40 @@ margin_left = -8.0
 margin_top = -8.0
 margin_right = 8.0
 margin_bottom = 8.0
+mouse_filter = 2
 texture = ExtResource( 8 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="ShotgunShellProgress" type="TextureProgress" parent="PlayerGUI/MarginContainer/Control/WeaponChangerGUI"]
 visible = false
 margin_top = 16.0
 margin_right = 18.0
 margin_bottom = 26.0
+mouse_filter = 2
 max_value = 18.0
 value = 17.0
 texture_under = ExtResource( 9 )
 texture_over = ExtResource( 11 )
 texture_progress = ExtResource( 10 )
+
+[node name="HealthProgress" type="TextureProgress" parent="PlayerGUI/MarginContainer/Control"]
+anchor_left = -0.017
+anchor_top = -0.108
+anchor_right = -0.017
+anchor_bottom = -0.108
+margin_left = 0.0120001
+margin_top = 0.04
+margin_right = 60.012
+margin_bottom = 12.04
+value = 100.0
+texture_under = ExtResource( 12 )
+texture_over = ExtResource( 14 )
+texture_progress = ExtResource( 13 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="PlayerHitbox" type="Area2D" parent="."]
 position = Vector2( 0, -20 )
@@ -242,6 +270,7 @@ collision_mask = 96
 shape = SubResource( 17 )
 
 [node name="DamageTimer" type="Timer" parent="."]
+one_shot = true
 
 [node name="PlayerTriggerArea" type="Area2D" parent="."]
 position = Vector2( 0, -20 )

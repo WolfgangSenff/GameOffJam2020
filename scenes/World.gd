@@ -12,7 +12,9 @@ var levels = {
     preload("res://resources/levels/ScienceLevel4.tres") : preload("res://scenes/levels/ScienceLevel4.tscn"),
     preload("res://resources/levels/ScienceLevel5.tres") : preload("res://scenes/levels/ScienceLevel5.tscn"),
     preload("res://resources/levels/ScienceLevel6.tres") : preload("res://scenes/levels/ScienceLevel6.tscn"),
-    preload("res://resources/levels/Hub.tres") : preload("res://scenes/levels/HubLevel.tscn")
+    preload("res://resources/levels/Hub.tres") : preload("res://scenes/levels/HubLevel.tscn"),
+    preload("res://resources/levels/IntroLevel1.tres") : preload("res://scenes/levels/SpaceLandingZoneLevel.tscn"),
+    preload("res://resources/levels/IntroLevel2.tres") : preload("res://scenes/levels/IntroLevel2.tscn")
    }
 
 onready var current_level setget set_current_level
@@ -21,8 +23,22 @@ onready var character = $YSort/Character
 
 func _ready() -> void:
     randomize()
-    self.current_level = levels[preload("res://resources/levels/Hub.tres")].instance()
+    self.current_level = levels[preload("res://resources/levels/IntroLevel1.tres")].instance()
+    character.connect("died", self, "on_character_died", [], CONNECT_ONESHOT)
     
+func on_character_died():
+    get_tree().reload_current_scene()
+
+func hide_background() -> void:
+    $ParallaxBackground/StarLayer.hide()
+    $ParallaxBackground/EarthLayer.hide()
+    $Window.hide()
+    
+func show_background() -> void:
+    $ParallaxBackground/StarLayer.show()
+    $ParallaxBackground/EarthLayer.show()
+    $Window.show()
+
 func set_current_level(value):
     if !current_level:
         current_level = current_level_holder

@@ -42,12 +42,12 @@ tracks/0/keys = {
 "values": [ Color( 1, 1, 1, 1 ) ]
 }
 
-[node name="WhiteSheetGhost" groups=[
-"Enemy",
-] instance=ExtResource( 1 )]
+[node name="WhiteSheetGhost" instance=ExtResource( 1 )]
 collision_mask = 12
 script = ExtResource( 3 )
+Speed = 45.0
 HP = 30
+Damage = 20.0
 
 [node name="Sprite" parent="." index="0"]
 position = Vector2( 0, -8 )
@@ -68,5 +68,9 @@ TimeBetweenNewPositions = 5.0
 
 [node name="InvincibleTimeoutState" parent="StateMachine/DamageStates" index="0" instance=ExtResource( 4 )]
 Timeout = 1.0
+
+[node name="EnemyWeapon" parent="." index="4"]
+Damage = 5.0
+WeaponType = "Gun"
 
 [connection signal="area_entered" from="." to="." method="_on_WhiteSheetGhost_area_entered"]

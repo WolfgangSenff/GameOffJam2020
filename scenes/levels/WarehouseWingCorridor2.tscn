@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://assets/images/Boxes2-Background.png" type="Texture" id=1]
 [ext_resource path="res://scenes/LevelBase.tscn" type="PackedScene" id=2]
@@ -8,6 +8,7 @@
 [ext_resource path="res://scenes/OrangeHauntedBall.tscn" type="PackedScene" id=6]
 [ext_resource path="res://resources/levels/WarehouseWing3.tres" type="Resource" id=7]
 [ext_resource path="res://scenes/levels/WarehouseWingCorridor1.gd" type="Script" id=8]
+[ext_resource path="res://scenes/GismoTrigger.tscn" type="PackedScene" id=9]
 
 [node name="WarehouseWingCorridor2" instance=ExtResource( 2 )]
 script = ExtResource( 8 )
@@ -27,3 +28,7 @@ ConnectedLevel = ExtResource( 7 )
 position = Vector2( -5.59999, 62.4612 )
 EnemiesToSpawn = [ ExtResource( 3 ), ExtResource( 5 ), ExtResource( 3 ), ExtResource( 6 ) ]
 SpawnTimes = [ 0.5, 0.5, 0.5, 0.5 ]
+
+[node name="GismoTrigger" parent="." index="11" instance=ExtResource( 9 )]
+position = Vector2( 74.5227, 44.7998 )
+GismoText = "Something really has my stomach hurting. I don't know what's h@ppening anymore."

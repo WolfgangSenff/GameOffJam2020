@@ -55,7 +55,6 @@ func _on_WolfBoss_area_entered(area: Area2D) -> void:
         state_machine.current_damage_state.handle_damage(area, area.global_position - global_position)
     
 func dies() -> void:
-    get_tree().call_group("Player", "give_next_weapon")
     GameState.hub_science_complete = true
     emit_signal("killed")
     queue_free()

@@ -1,10 +1,11 @@
-[gd_scene load_steps=20 format=2]
+[gd_scene load_steps=21 format=2]
 
 [ext_resource path="res://scenes/OozeBoss.gd" type="Script" id=1]
 [ext_resource path="res://scenes/state_machine/SpecificWeaponTypeDamageState.tscn" type="PackedScene" id=2]
 [ext_resource path="res://scenes/state_machine/FollowTargetPhysicsState.tscn" type="PackedScene" id=3]
 [ext_resource path="res://assets/images/ooze1.png" type="Texture" id=4]
 [ext_resource path="res://scenes/state_machine/StateMachine.tscn" type="PackedScene" id=5]
+[ext_resource path="res://scenes/OozeWeapon.gd" type="Script" id=6]
 
 [sub_resource type="CircleShape2D" id=1]
 radius = 15.1633
@@ -124,11 +125,15 @@ texture = ExtResource( 4 )
 centered = false
 hframes = 6
 vframes = 3
+frame = 1
 
 [node name="WeaponArea" type="Area2D" parent="Sprite"]
 position = Vector2( 19.6233, 24.6024 )
 collision_layer = 32
-collision_mask = 2
+collision_mask = 256
+script = ExtResource( 6 )
+Damage = 30.0
+WeaponType = "Blade"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite/WeaponArea"]
 shape = SubResource( 1 )

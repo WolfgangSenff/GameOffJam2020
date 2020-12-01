@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/24035__bebeto__loop018.wav-09f8b78a8666cd1c010f8247afcd969c.sample"
+
+[deps]
+
+source_file="res://assets/sounds/24035__bebeto__loop018.wav"
+dest_files=[ "res://.import/24035__bebeto__loop018.wav-09f8b78a8666cd1c010f8247afcd969c.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=true
+compress/mode=0

@@ -213,10 +213,10 @@ hframes = 5
 vframes = 2
 
 [node name="WeaponArea" type="Area2D" parent="Sprite"]
-collision_layer = 16
-collision_mask = 2
+collision_layer = 32
+collision_mask = 256
 script = ExtResource( 2 )
-Damage = 10
+Damage = 20
 WeaponType = "Blade"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite/WeaponArea"]

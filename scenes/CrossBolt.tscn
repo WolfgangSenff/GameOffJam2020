@@ -40,7 +40,7 @@ collision_layer = 4
 collision_mask = 16
 script = ExtResource( 2 )
 Speed = 1000.0
-Damage = 6.0
+Damage = 8.0
 WeaponType = "Blade"
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]

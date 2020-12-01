@@ -1,7 +1,7 @@
 extends KinematicBody2D
 
 signal hp_changed(new_value)
-signal died(character)
+signal died()
 
 enum State { Reset, Idle, Run }
 
@@ -12,6 +12,8 @@ onready var char_sprite = $UnitSprite
 onready var char_anim = char_anim_tree.get("parameters/playback")
 onready var damage_timer = $DamageTimer
 onready var weapon_changer_ui = $PlayerGUI/MarginContainer/Control/WeaponChangerGUI
+onready var gui = $PlayerGUI/MarginContainer
+
 
 # Consider gun smash with the butt of it, only with arms
 # Consider adding knife wielding, only with arms, maybe multiple swings
@@ -42,31 +44,37 @@ func give_next_weapon() -> void:
     weapon_changer.give_next_weapon()
     weapon_changer_ui.gain_weapon()
 
+func hide_gui() -> void:
+    gui.hide()
+    
+func show_gui() -> void:
+    gui.show()
+
 func set_hp(value) -> void:
     if value > 0:
         HP = value
         emit_signal("hp_changed", HP)
+        $PlayerGUI/MarginContainer/Control/HealthProgress.value = HP
     else:
-        emit_signal("died", self)
+        emit_signal("died")
 
 func take_damage(weapon) -> void:
-    if weapon is Weapon:
-        if damage_timer.is_stopped():
-            damage_timer.start()
-            var weapon_type = weapon.WeaponType
-            var amount = weapon.Damage
-            
-            if current_armor > 0:
-                if weapon_type == Weapon.Explosive:
-                    self.HP -= amount / 1.4 # Armor doesn't help much
-                elif weapon_type == Weapon.Gun:
-                    self.HP -= amount / 2.0
-                elif weapon_type == Weapon.Blade:
-                    self.HP -= amount / 3.0
-                elif weapon_type == Weapon.Fist:
-                    self.HP -= amount / 4.0
-            else:
-                self.HP -= amount
+    if damage_timer.is_stopped():
+        damage_timer.start()
+        var weapon_type = weapon.WeaponType
+        var amount = weapon.Damage
+        
+        if current_armor > 0:
+            if weapon_type == Weapon.Explosive:
+                self.HP -= amount / 1.1 # Armor doesn't help much
+            elif weapon_type == Weapon.Gun:
+                self.HP -= amount / 1.2
+            elif weapon_type == Weapon.Blade:
+                self.HP -= amount / 1.5
+            elif weapon_type == Weapon.Fist:
+                self.HP -= amount / 2.0
+        else:
+            self.HP -= amount
 
 func _physics_process(delta: float) -> void:
     if current_state == State.Reset or current_state == State.Idle:

@@ -18,13 +18,13 @@ func handle_damage(weapon, from_direction : Vector2) -> void:
             character.HP -= amount # Armor doesn't help against explosive damage
             current_armor -= 5.0 # It also takes a terrible toll on it
         elif weapon_type == Weapon.Gun:
-            character.HP -= amount / 2.0
+            character.HP -= amount / 1.1
             current_armor -= 3.0
         elif weapon_type == Weapon.Blade:
-            character.HP -= amount / 3.0
+            character.HP -= amount / 1.5
             current_armor -= 2.0
         elif weapon_type == Weapon.Fist:
-            character.HP -= amount / 4.0
+            character.HP -= amount / 2
             current_armor -= 1.0
         
         armor_sprite.global_position = character.global_position

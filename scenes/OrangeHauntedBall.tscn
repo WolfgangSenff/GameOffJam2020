@@ -4,11 +4,15 @@
 [ext_resource path="res://scenes/RedHauntedBall.tscn" type="PackedScene" id=2]
 
 [node name="OrangeHauntedBall" instance=ExtResource( 2 )]
-collision_layer = 16
+Speed = 0.0
 HP = 55
+Damage = 7.0
 
 [node name="Sprite" parent="." index="0"]
 texture = ExtResource( 1 )
 
 [node name="WanderingPhysicsState" parent="StateMachine/PhysicsStates" index="0"]
 NextState = NodePath("../../../../RedHauntedBall/StateMachine/PhysicsStates/WanderingPhysicsState")
+
+[node name="EnemyWeapon" parent="." index="4"]
+Damage = 14.0

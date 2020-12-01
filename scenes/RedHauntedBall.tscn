@@ -5,9 +5,13 @@
 
 [node name="RedHauntedBall" instance=ExtResource( 1 )]
 ShouldFlipDirection = false
+Damage = 8.0
 
 [node name="Sprite" parent="." index="0"]
 texture = ExtResource( 2 )
 
 [node name="InvincibleTimeoutState" parent="StateMachine/DamageStates" index="0"]
 NextState = NodePath("../../../../WhiteSheetGhost/StateMachine/DamageStates/InvincibleTimeoutState")
+
+[node name="EnemyWeapon" parent="." index="4"]
+Damage = 12.0

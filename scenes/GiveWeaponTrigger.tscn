@@ -1,0 +1,15 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://scenes/PlayerTrigger.tscn" type="PackedScene" id=1]
+[ext_resource path="res://scenes/GiveWeaponTrigger.gd" type="Script" id=2]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 10, 42.6264 )
+
+[node name="GiveWeaponTrigger" instance=ExtResource( 1 )]
+collision_layer = 128
+collision_mask = 128
+script = ExtResource( 2 )
+
+[node name="CollisionShape2D" parent="." index="0"]
+shape = SubResource( 1 )

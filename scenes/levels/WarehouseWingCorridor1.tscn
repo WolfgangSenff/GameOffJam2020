@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://assets/images/Boxes5-Background.png" type="Texture" id=1]
 [ext_resource path="res://scenes/LevelBase.tscn" type="PackedScene" id=2]
@@ -8,6 +8,7 @@
 [ext_resource path="res://scenes/SpikeTrap.tscn" type="PackedScene" id=6]
 [ext_resource path="res://scenes/RedHauntedBall.tscn" type="PackedScene" id=7]
 [ext_resource path="res://scenes/OrangeHauntedBall.tscn" type="PackedScene" id=8]
+[ext_resource path="res://scenes/GismoTrigger.tscn" type="PackedScene" id=9]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 10, 30.1764 )
@@ -36,5 +37,13 @@ shape = SubResource( 1 )
 
 [node name="SpikeTrap" parent="." index="11" instance=ExtResource( 6 )]
 position = Vector2( -36.396, -2.59972 )
+
+[node name="GismoTrigger" parent="." index="12" instance=ExtResource( 9 )]
+position = Vector2( 90.2763, 45.9145 )
+GismoText = "Uh oh. You're going to see some doors popping up. I think bad things come out of them."
+
+[node name="GismoTrigger2" parent="." index="13" instance=ExtResource( 9 )]
+position = Vector2( 51.2379, 45.6927 )
+GismoText = "And this thing is a spike trap - be careful."
 
 [editable path="LevelExit"]

@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/263595__porkmuncher__swoosh.wav-ffcaa1a7c4c8c1c6ffd66331882aaadf.sample"
+
+[deps]
+
+source_file="res://assets/sounds/263595__porkmuncher__swoosh.wav"
+dest_files=[ "res://.import/263595__porkmuncher__swoosh.wav-ffcaa1a7c4c8c1c6ffd66331882aaadf.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0
