@@ -1,0 +1,113 @@
+[gd_scene load_steps=10 format=2]
+
+[ext_resource path="res://scenes/FlameEnemy1.gd" type="Script" id=1]
+[ext_resource path="res://assets/images/FlameEnemy.png" type="Texture" id=2]
+[ext_resource path="res://scenes/Enemy.tscn" type="PackedScene" id=3]
+[ext_resource path="res://scenes/state_machine/FollowTargetPhysicsState.tscn" type="PackedScene" id=4]
+[ext_resource path="res://scenes/state_machine/SpecificWeaponTypeDamageState.tscn" type="PackedScene" id=5]
+
+[sub_resource type="CircleShape2D" id=1]
+radius = 5.01724
+
+[sub_resource type="Animation" id=3]
+resource_name = "Fire"
+length = 0.5
+step = 0.01
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 8, 9, 10, 11, 9 ]
+}
+tracks/1/type = "method"
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.37 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "fire"
+} ]
+}
+
+[sub_resource type="Animation" id=2]
+resource_name = "Move"
+length = 0.8
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2, 3, 4, 5, 6, 7 ]
+}
+
+[sub_resource type="Animation" id=4]
+resource_name = "TakeDamage"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 0.968627, 1, 0, 1 ), Color( 1, 1, 1, 1 ), Color( 0.968627, 1, 0, 1 ), Color( 1, 1, 1, 1 ) ]
+}
+
+[node name="FlameEnemy1" instance=ExtResource( 3 )]
+script = ExtResource( 1 )
+Damage = 5.0
+HP = 30
+Speed = 80.0
+
+[node name="CollisionShape2D" parent="." index="0"]
+position = Vector2( 0.790838, -6.22785 )
+shape = SubResource( 1 )
+
+[node name="Sprite" parent="." index="1"]
+position = Vector2( 0.133255, -0.320526 )
+texture = ExtResource( 2 )
+centered = false
+offset = Vector2( -6.92128, -14.969 )
+hframes = 4
+vframes = 3
+frame = 11
+
+[node name="FirePosition" type="Position2D" parent="Sprite" index="0"]
+position = Vector2( 11.0717, 1.15331 )
+
+[node name="AnimationPlayer" parent="." index="2"]
+autoplay = "Move"
+anims/Fire = SubResource( 3 )
+anims/Move = SubResource( 2 )
+
+[node name="DamageAnimationPlayer" type="AnimationPlayer" parent="." index="3"]
+anims/TakeDamage = SubResource( 4 )
+
+[node name="FollowTargetPhysicsState" parent="StateMachine/PhysicsStates" index="0" instance=ExtResource( 4 )]
+TimeBetweenNewPositions = 1.5
+MovementSpeed = 95.0
+
+[node name="SpecificWeaponTypeDamageState" parent="StateMachine/DamageStates" index="0" instance=ExtResource( 5 )]
+WeaponType = "Blade"
+
+[connection signal="area_entered" from="." to="." method="_on_FlameEnemy_area_entered" flags=3]

@@ -1,0 +1,12 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://scenes/state_machine/DamageState.tscn" type="PackedScene" id=1]
+[ext_resource path="res://scenes/state_machine/ArmorDamageState.gd" type="Script" id=2]
+[ext_resource path="res://assets/images/body_armor_effect.png" type="Texture" id=3]
+
+[node name="ArmorDamageState" instance=ExtResource( 1 )]
+script = ExtResource( 2 )
+
+[node name="Sprite" type="Sprite" parent="." index="0"]
+visible = false
+texture = ExtResource( 3 )

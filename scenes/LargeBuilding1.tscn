@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://assets/images/LargeRoom1.png" type="Texture" id=1]
+
+[node name="LargeBuilding" type="Sprite"]
+position = Vector2( 102.641, 21.3271 )
+scale = Vector2( 0.8, 0.8 )
+texture = ExtResource( 1 )

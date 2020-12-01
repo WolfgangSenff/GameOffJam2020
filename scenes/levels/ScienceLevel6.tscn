@@ -1,0 +1,79 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://resources/levels/Hub.tres" type="Resource" id=1]
+[ext_resource path="res://assets/images/ScienceJar.png" type="Texture" id=2]
+[ext_resource path="res://scenes/levels/WolfBossScene.gd" type="Script" id=3]
+[ext_resource path="res://assets/images/BloodyScratch.png" type="Texture" id=4]
+[ext_resource path="res://scenes/levels/ScienceLevelBase.tscn" type="PackedScene" id=5]
+[ext_resource path="res://scenes/WolfDoor.tscn" type="PackedScene" id=6]
+[ext_resource path="res://assets/images/ScienceBarrel.png" type="Texture" id=7]
+[ext_resource path="res://assets/images/BloodyPool.png" type="Texture" id=8]
+
+[node name="ScienceLevel6" instance=ExtResource( 5 )]
+script = ExtResource( 3 )
+TimesBetweenEnemySpawns = [ 1.0 ]
+
+[node name="Background" parent="." index="1"]
+position = Vector2( 0, -30 )
+
+[node name="BloodyPool2" type="Sprite" parent="Background" index="0"]
+position = Vector2( 95.5722, 18.8064 )
+texture = ExtResource( 8 )
+
+[node name="BloodyPool3" type="Sprite" parent="Background" index="1"]
+position = Vector2( 50.5722, 18.8064 )
+texture = ExtResource( 8 )
+
+[node name="BloodyPool4" type="Sprite" parent="Background" index="2"]
+position = Vector2( 26.5722, 19.8064 )
+texture = ExtResource( 8 )
+
+[node name="BloodyPool5" type="Sprite" parent="Background" index="3"]
+position = Vector2( 0.572205, 19.8064 )
+texture = ExtResource( 8 )
+
+[node name="BloodyPool7" type="Sprite" parent="Background" index="4"]
+position = Vector2( -42.4278, 17.8064 )
+texture = ExtResource( 8 )
+
+[node name="BloodyPool6" type="Sprite" parent="Background" index="5"]
+position = Vector2( -18.4278, 20.8064 )
+texture = ExtResource( 8 )
+
+[node name="BloodyPool" type="Sprite" parent="Background" index="6"]
+position = Vector2( -78.3992, 17.8479 )
+texture = ExtResource( 8 )
+
+[node name="BloodyPool8" type="Sprite" parent="Background" index="7"]
+position = Vector2( -2.19907, 23.6125 )
+texture = ExtResource( 8 )
+
+[node name="BloodyScratch2" type="Sprite" parent="Background" index="8"]
+position = Vector2( 86.9455, -1.32248 )
+texture = ExtResource( 4 )
+
+[node name="ScienceJar" type="Sprite" parent="Background" index="9"]
+position = Vector2( -109.551, 29.5898 )
+texture = ExtResource( 2 )
+
+[node name="ScienceJar2" type="Sprite" parent="Background" index="10"]
+position = Vector2( -83.9107, 29.8294 )
+texture = ExtResource( 2 )
+
+[node name="ScienceBarrel" type="Sprite" parent="Background" index="11"]
+position = Vector2( 85.0285, 11.1383 )
+texture = ExtResource( 7 )
+
+[node name="ScienceBarrel2" type="Sprite" parent="Background" index="12"]
+position = Vector2( 63.2221, 11.3779 )
+texture = ExtResource( 7 )
+
+[node name="BloodyScratch" type="Sprite" parent="Background" index="13"]
+position = Vector2( -61.8647, -2.281 )
+texture = ExtResource( 4 )
+
+[node name="LevelExit" parent="." index="9"]
+ConnectedLevel = ExtResource( 1 )
+
+[node name="WolfDoor" parent="Doors" index="0" instance=ExtResource( 6 )]
+position = Vector2( 83.5907, 39.3684 )

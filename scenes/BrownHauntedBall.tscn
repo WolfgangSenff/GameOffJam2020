@@ -1,0 +1,26 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://scenes/RedHauntedBall.tscn" type="PackedScene" id=1]
+[ext_resource path="res://assets/images/haunted_ball_brown.png" type="Texture" id=2]
+[ext_resource path="res://scenes/EnemyWeapon.gd" type="Script" id=3]
+
+[node name="BrownHauntedBall" groups=[
+"Enemy",
+] instance=ExtResource( 1 )]
+collision_layer = 16
+Speed = 0.0
+HP = 65
+Damage = 10.0
+
+[node name="Sprite" parent="." index="0"]
+texture = ExtResource( 2 )
+
+[node name="WanderingPhysicsState" parent="StateMachine/PhysicsStates" index="0"]
+NextState = NodePath("../../../../RedHauntedBall/StateMachine/PhysicsStates/WanderingPhysicsState")
+
+[node name="EnemyWeapon" parent="." index="4"]
+collision_layer = 32
+collision_mask = 256
+script = ExtResource( 3 )
+Damage = 10.0
+WeaponType = "Gun"
